@@ -5,12 +5,12 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["quranschool-api.csproj", "."]
+COPY ["quranschool-api.csproj", "quranschool-api.csproj"]
 RUN dotnet restore "quranschool-api.csproj"
 COPY . .
 RUN dotnet publish "quranschool-api.csproj" -c Release -o /app/publish
 
 FROM base AS final
-WORKDIR /app
+WORKDIR / app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "quranschool-api.dll"]
