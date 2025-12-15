@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuranSchool.Api.Data;
 using QuranSchool.Api.Models;
+using Microsoft.EntityFrameworkCore; // ← هذا السطر ضروري!
 
 namespace QuranSchool.Api.Controllers;
 
@@ -18,7 +19,7 @@ public class StudentsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Student>>> GetStudents()
     {
-        return await _context.Students.ToListAsync();
+        return await _context.Students.ToListAsync(); // ← يعتمد على using Microsoft.EntityFrameworkCore;
     }
 
     [HttpPost]
